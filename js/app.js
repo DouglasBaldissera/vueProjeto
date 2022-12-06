@@ -7,6 +7,7 @@ var app = new Vue({
         edit_id: "",
         edit_name: "",
         edit_email: "",
+        senha: ""
     },
  
     methods: {
@@ -17,7 +18,40 @@ var app = new Vue({
             this.$refs[id].hide();
         },
  
-        onSubmit() {
+        onSubmit() {            
+            if (this.senha.length < 6) {
+                alert("Senha precisa ter 6 caracteres ou mais");
+                return;
+            }
+
+            var fd = new FormData();
+            fd.append("email", this.email);
+            fd.append("senha", this.senha);
+ 
+                axios({
+                    url: "insert.php",
+                    method: "post",
+                    data: fd,
+                })
+                    .then((res) => {
+                        if (res.data.res == "success") {
+                            app.makeToast("Success", "Record Added", "default");
+ 
+                            this.name = "";
+                            this.email = "";
+ 
+                            app.hideModal("my-modal");
+                            app.getRecords();
+                        } else {
+                            app.makeToast("Error", "Failed to add record. Please try again", "default");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            return;
+            
+            
             if (this.name !== "" && this.email !== "") {
                 var fd = new FormData();
  

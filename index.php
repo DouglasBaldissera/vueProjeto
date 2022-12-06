@@ -1,3 +1,9 @@
+<!-- Faça um endpoint utilizando boas práticas e REST que valide login e senha retornando se o usuário logou ou não e devolvendo essa resposta. 
+Em caso de o usuário mandar um formato inválido de e-mail no login, o endpoint deve retornar o erro.
+Em caso de o usuário mandar uma senha com menos de 6 caracteres, o sistema não precisa nem bater no banco e já pode devolver um aviso de login inválido.
+Bônus: Caso ainda haja tempo, retorne um token de validação que tmb poderá ser utilizado para consultar outro endpoint que só retorne conteúdo (Qualquer) caso o token seja válido. Pode utilizar um cliente de chamadas de api como insomnia, postman ou similar, para testar. -->
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -55,14 +61,20 @@
                 <!-- Add Records Modal -->
                 <b-modal ref="my-modal" hide-footer title="Add Records">
                     <form action="" @submit.prevent="onSubmit">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="">Name</label>
                             <input type="text" v-model="name" class="form-control">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="email" v-model="email" class="form-control">
+                            <input type="email" v-model="email" class="form-control" required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="">Senha</label>
+                            <input type="password" v-model="senha" class="form-control" required>
+                        </div>
+
                         <div class="form-group">
                             <button class="btn btn-sm btn-outline-info">Add Records</button>
                         </div>
