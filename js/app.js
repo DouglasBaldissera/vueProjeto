@@ -64,7 +64,29 @@ var app = new Vue({
                 });
         },
  
+        // DELETEEEEEEEEE
         deleteRecord(id) {
+            // Crie uma função que teste se a palavra é um palíndromo e retorne true ou false.
+            // Não é permitido usar método array.reverse.
+            // Exemplos de palíndromo: Anilina, Arara, Esse, Reviver
+            // Tempo máximo de teste: 30 min
+            // let palavra = "Anilina";
+            let palavra = "Anilina";
+            palavra = palavra.toLowerCase();
+
+            let resultado = palavra.split("");
+
+            let stringFormada = '';
+            for (let i = resultado.length - 1; i >= 0; i--) {
+                stringFormada = stringFormada + resultado[i];
+            }
+            if (palavra === stringFormada) {
+                console.log("A palavra é um palíndromo");
+            } else {
+                console.log("A palavra não é um palíndromo");
+            }
+            return;
+
             if (window.confirm("Delete this record")) {
                 var fd = new FormData();
  
@@ -89,6 +111,7 @@ var app = new Vue({
             }
         },
  
+        // EDITARRRRRRRRRRRRRRR
         editRecord(id) {
             var fd = new FormData();
  
